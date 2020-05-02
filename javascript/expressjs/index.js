@@ -9,6 +9,17 @@ app.get('/', (req, res) => {
     //enviar una respuesta
     res.send('Hello World')
 });
+
+// Rut de prueba con about
+app.get('/about', (req, res) => {
+    res.send('ABOUT ME')
+});
+
+// Ruta de prueba con contact
+app.get('/contact', (req, res) => {
+    res.send('FORM CONTACT')
+});
+
 // Indicar donde se ejecutara el servidor
 app.listen(5000, () => {
     console.log('Server on http://localhost:5000');
@@ -31,5 +42,4 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log('Server on http://localhost:3000');
 });
-
 */
