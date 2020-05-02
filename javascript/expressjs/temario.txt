@@ -2,5 +2,6 @@
 - crear archivo package.json (Describe el proyecto y sus dependencias). Se crea con 'npm init -y'
 - instalar express. Se instala con 'npm install express'
 - levantar servidor con express.
-- instalar modulo nodemon. Con 'npm i nodemon -D', el '-D' es para que quede como dependencia de desarollo dentro del package.json
+- instalar modulo nodemon. Con 'npm i nodemon -D', el '-D' es para que quede como dependencia de desarollo dentro del package.json. 
+Con 'npx nodemon index.js' se ejecuta el servidor
 - 

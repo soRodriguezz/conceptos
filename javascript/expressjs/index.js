@@ -4,20 +4,56 @@
 const express = require('express');
 // ejecutar express que devuelve un objeto que es el servidor guardandolo en una variable
 const app = express();
+// Para que express ahora pueda entender los formatos JSON (es iun middleware)
+app.use(express.json());
+
 // Cuando se hace una peticion GET a la raiz del servidor responder con: (Es un ruta o route)
 app.get('/', (req, res) => {
     //enviar una respuesta
     res.send('Hello World')
 });
 
-// Rut de prueba con about
-app.get('/about', (req, res) => {
+// Ejemplo envio de JSON por el metodo GET
+app.get('/user', (req, res) => {
+    //especificar que voy a mandar un objeto de java script
+    res.json({
+        username: 'Sebastian',
+        lastname: 'Rodriguez'
+    });
+});
+
+// Ejemplo de envio de formulario por POST, no importa que tenga el mismo nombre la ruta, importa el motodo.
+// :id, es una ruta dinamica, es un tipo de variable
+app.post('/user/:id', (req, res) => {
+    // Recibe los datos que envia la aplicacion FrontEnd
+    console.log(req.body);
+    // Para capturar los parametros enviados en la url
+    console.log(req.params);
+    // Especificar que voy a mandar un objeto de javascript
+    res.send('POST REQUEST RECEIVED');
+});
+
+// Ejemplo de ruta para borrar 
+app.delete('/user/:userId', (req, res) => {
+    // Se usa esa forma de comentario para poner variables dentro, en este caso llama el resultado de lo que trae el userId
+    res.send(`User ${req.params.userId}`);
+});
+
+
+
+// Rut de prueba con POST
+app.post('/about', (req, res) => {
     res.send('ABOUT ME')
 });
 
-// Ruta de prueba con contact
-app.get('/contact', (req, res) => {
+// Ruta de prueba con PUT
+app.put('/contact', (req, res) => {
     res.send('FORM CONTACT')
+});
+
+// Ruta de prueba con DELETE
+app.put('/delete', (req, res) => {
+    res.send('delete')
 });
 
 // Indicar donde se ejecutara el servidor
