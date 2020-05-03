@@ -4,4 +4,5 @@
 - levantar servidor con express.
 - instalar modulo nodemon. Con 'npm i nodemon -D', el '-D' es para que quede como dependencia de desarollo dentro del package.json. 
 Con 'npx nodemon index.js' se ejecuta el servidor
-- 
+- Instalar el paquete morgan con, npm i morgan. Sirve para mostrar las rutas y solicitudes de los usuarios.
+- Instalar moto de plantillas ejs, 'npm i ejs'. No es necesario requerir al estar integrado con express

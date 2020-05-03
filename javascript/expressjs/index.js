@@ -2,12 +2,43 @@
 
 // Requiere express en una variable para usarlo
 const express = require('express');
+
+// Requiere morgan, es un middleware
+const morgan = require('morgan');
+
 // ejecutar express que devuelve un objeto que es el servidor guardandolo en una variable
 const app = express();
-// Para que express ahora pueda entender los formatos JSON (es iun middleware)
-app.use(express.json());
 
-// Funcion de express, no es un metodo el 'all', es un middleware
+// Para ejecutar morgan, hay que pasarle una configuracion
+// Sirve para mostrar la ruta en la que consulta el usuario
+app.use(morgan('dev'));
+
+// Registra las peticiones que lleguen al servidor
+// funciona para cualquier ruta que creemos, no como el 'all'
+function logger(req, res, next) {
+    // protocol para obtener el protocolo en el que se esta realizando la consulta
+    // req.get('host') para obtener el servidor y el puerto al que se hace la peticion
+    // req.originalUrl para obtener la ruta que esta consultando el usuario
+    console.log(`Route received: ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    next();
+}
+
+// Settings
+// Establecer variable nueva
+app.set('appName', 'Express tutorial');
+// establecer variable para indicar puerto
+app.set('port', 3000);
+// variable para usar el moto de platillas de ejs
+app.set('view engine', 'ejs');
+
+// SE DEBEN EJECUTAR TODOS LOS MIDDLEWARE ANTES DE LAS RUTAS
+// Para que express ahora pueda entender los formatos JSON, es un middleware
+// Recibe lo que viene en un body y lo convierte en un JSON
+app.use(express.json());
+// Ejecutar la funcion logger, todos los middlerware se ejecutarn con el app.use
+app.use(logger);
+
+// Funcion de express, no es un metodo el 'all'
 // Es para hacer algo siempre antes de entrar a cualquier otro metodo, para todos las consultas.
 // next es para que luego que ejecute el console log siga con el siguiente metodo a ejecutar
 app.all('/user', (req, res, next) => {
@@ -16,11 +47,18 @@ app.all('/user', (req, res, next) => {
     next();
 });
 
-// Cuando se hace una peticion GET a la raiz del servidor responder con: (Es un ruta o route)
 app.get('/', (req, res) => {
-    //enviar una respuesta
-    res.send('Hello World')
+    const data = [{ name: 'Sebastian' }, { name: 'juan' }, { name: 'esteban' }]
+        // render es para renderizar o pintar por pantalla la vista escrita
+    res.render('index.ejs', { people: data });
 });
+
+
+// Cuando se hace una peticion GET a la raiz del servidor responder con: (Es un ruta o route)
+// app.get('/', (req, res) => {
+//     //enviar una respuesta
+//     res.send('Hello World')
+// });
 
 // Ejemplo envio de JSON por el metodo GET
 app.get('/user', (req, res) => {
@@ -70,9 +108,16 @@ app.put('/delete', (req, res) => {
     res.send('delete')
 });
 
+// Uso de middleware con una libreria interna de express
+// abre un index.html que encuentre en la carpeta que se le mencione
+app.use(express.static('public'));
+
 // Indicar donde se ejecutara el servidor
-app.listen(5000, () => {
-    console.log('Server on http://localhost:5000');
+// Usar variable que se creo arriba
+// Pasar la variable definida arriba como puerto
+app.listen(app.get('port'), () => {
+    console.log(app.get('appName'));
+    console.log(`Server on http://localhost:${app.get('port')}`);
 });
 
 /*  CREACION DE SERVIDOR CON NODEJS puro
