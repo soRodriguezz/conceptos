@@ -7,6 +7,15 @@ const app = express();
 // Para que express ahora pueda entender los formatos JSON (es iun middleware)
 app.use(express.json());
 
+// Funcion de express, no es un metodo el 'all', es un middleware
+// Es para hacer algo siempre antes de entrar a cualquier otro metodo, para todos las consultas.
+// next es para que luego que ejecute el console log siga con el siguiente metodo a ejecutar
+app.all('/user', (req, res, next) => {
+    console.log('Por aqui paso');
+    // Para llamar al tercer parametro y pasar a la siguienet ejecucion
+    next();
+});
+
 // Cuando se hace una peticion GET a la raiz del servidor responder con: (Es un ruta o route)
 app.get('/', (req, res) => {
     //enviar una respuesta
@@ -33,13 +42,18 @@ app.post('/user/:id', (req, res) => {
     res.send('POST REQUEST RECEIVED');
 });
 
+// Ejemplo de metodo PUT, necesita una ID y los datos que necesitamos reemplazar en el body
+app.put('/user/:id', (req, res) => {
+    // Recibe los datos que envia la aplicacion FrontEnd
+    console.log(req.body);
+    res.send(`User ${req.params.id} Updated`);
+});
+
 // Ejemplo de ruta para borrar 
 app.delete('/user/:userId', (req, res) => {
     // Se usa esa forma de comentario para poner variables dentro, en este caso llama el resultado de lo que trae el userId
-    res.send(`User ${req.params.userId}`);
+    res.send(`User ${req.params.userId} deleted`);
 });
-
-
 
 // Rut de prueba con POST
 app.post('/about', (req, res) => {
