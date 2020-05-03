@@ -2,7 +2,7 @@
 * {
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
-    color: #333;
+    color: #ffffff;
     font-size: 100%;
     line-height: 1.5;
 }
@@ -34,7 +34,7 @@ nav li {
 nav a {
     display: block;
     text-decoration: none;
-    background: #fff;
+    background: #000000;
     transform-origin: 0 0;
     transition: transform var(--duration) var(--easing), color var(--duration) var(--easing);
     transition-delay: var(--delay-out);
@@ -43,25 +43,25 @@ nav a {
 }
 
 nav a:hover {
-    background: #efefef;
+    background: black;
 }
 
 nav .sub-menu a {
     font-size: .9em;
-    color: #666666;
-    border-left: 2em solid white;
+    color: #ffffff;
+    border-left: 2em solid #000000;
     padding: .75em;
-    background: linear-gradient(to right, #dddddd 2px, #ffffff 2px);
+    background: linear-gradient(to right, #ffffff 2px, #000000 2px);
 }
 
 nav .sub-menu a:hover {
-    background: linear-gradient(to right, #dddddd 2px, #efefef 2px);
+    background: linear-gradient(to right, #ffffff 2px, #000000 2px);
 }
 
 nav header {
     font-weight: 600;
     display: block;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(20, 20, 20, 0.979);
     transform-origin: 0 0;
     transition: transform var(--duration) var(--easing), color var(--duration) var(--easing);
     transition-delay: var(--delay-out);
