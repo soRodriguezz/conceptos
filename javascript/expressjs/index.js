@@ -1,9 +1,9 @@
 /* Se ejecuta con node index.js */
 
-// Requiere express en una variable para usarlo
+// Importa express en una variable para usarlo
 const express = require('express');
 
-// Requiere morgan, es un middleware
+// Importa morgan, es un middleware
 const morgan = require('morgan');
 
 // ejecutar express que devuelve un objeto que es el servidor guardandolo en una variable
