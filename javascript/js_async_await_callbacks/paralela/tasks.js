@@ -15,3 +15,5 @@ module.exports = {
         return 'Two value';
     }
 }
+
+// ejemplo de funciones para comprobar la asincronia
