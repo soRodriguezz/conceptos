@@ -93,7 +93,7 @@ app.delete('/user/:userId', (req, res) => {
     res.send(`User ${req.params.userId} deleted`);
 });
 
-// Rut de prueba con POST
+// Ruta de prueba con POST
 app.post('/about', (req, res) => {
     res.send('ABOUT ME')
 });
