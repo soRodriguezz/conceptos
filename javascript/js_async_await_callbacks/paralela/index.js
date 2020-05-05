@@ -10,7 +10,7 @@ async function main() {
         console.timeEnd('Measuring time');
 
         console.log('Se ejecuto el valor 1', results[0]); // el valor del primer resultado en el arreglo 
-        console.log('Se ejecuto el valor 2', results[1]);
+        console.log('Se ejecuto el valor 2', results[1]); // el valor del segundo resultado en el arreglo
     } catch (e) {
         console.log(e);
     }
