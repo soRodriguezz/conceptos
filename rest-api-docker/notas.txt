@@ -1,0 +1,9 @@
+- instalar docker
+- iniciar el proyecto con npm init -y
+- instalar morgan dentro del proyecto
+- instlar express dentro del proyeto
+- configurar rutas ya archivos index.js
+- crear un archivo llamado Dockerfile dentro del proyecto
+- el .dockeringore es para ignorar carpetas que se ejecuten con los comandos de docker
+- documentacion de docker con node: https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/
+- cambiar el script para que inicie con npm start la API agregando: "start": "node src/index.js"
